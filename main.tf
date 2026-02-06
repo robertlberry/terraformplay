@@ -1,8 +1,15 @@
 # The main resource definitions
 
 # Set backend
-module "active_backend" {
-  source = "./backends"
+terraform {
+  cloud {
+    organization = "rlbenterprises"
+    workspaces {
+      name = "CLI-AWS-DEV"
+    }
+  }
+
+  required_version = ">= 1.1.2"
 }
 
 # Set provders
