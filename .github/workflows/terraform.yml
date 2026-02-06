@@ -18,11 +18,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: hashicorp/setup-terraform@v3
-<<<<<<< HEAD
-
-=======
       
->>>>>>> bcbdc5c32bd97f3886e17bf9bf159c33d0fffab1
       - run: terraform init -backend=false
       - run: terraform fmt -check
       - run: terraform validate
