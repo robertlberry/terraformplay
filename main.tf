@@ -14,7 +14,7 @@ terraform {
 
 # Set provders
 module "active_aws_provider" {
-  source = "./providers"
+  source = "./modules/providers"
 
   # Definitions
   active_region             = "us-east-1"
@@ -23,7 +23,7 @@ module "active_aws_provider" {
 
 # AWS VPC initiation
 module "networking_setup" {
-  source = "./network"
+  source = "./modules/network"
 
   # Definitions
   environment         = var.environment
@@ -37,7 +37,7 @@ module "networking_setup" {
 
 # AWS Security initiation
 module "security_setup" {
-  source = "./security"
+  source = "./modules/security"
 
   # Definitions
   vpc_id         = module.networking_setup.vpc_id
@@ -47,7 +47,7 @@ module "security_setup" {
 
 # AWS Compute initiation
 module "compute_setup" {
-  source = "./compute"
+  source = "./modules/compute"
 
   # Definitions of 2 ec2 instances.
   # One in the public subnet
