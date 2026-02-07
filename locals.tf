@@ -10,7 +10,7 @@ data "aws_availability_zones" "available_azs" {
 
 # Pick a couple of AZs that are available
 resource "random_shuffle" "azs" {
-  input        = data.aws_availability_zones.available_azs.state
+  input        = data.aws_availability_zones.available_azs.names
   result_count = 2
 
   keepers = {

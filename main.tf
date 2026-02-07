@@ -10,15 +10,18 @@ terraform {
   }
 
   required_version = ">= 1.1.2"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+  }
 }
 
 # Set provders
-module "active_aws_provider" {
-  source = "./modules/providers"
-
-  # Definitions
-  active_region             = "us-east-1"
-  active_credential_profile = "my-aws"
+provider "aws" {
+  region = var.active_region
 }
 
 # AWS VPC initiation
@@ -28,7 +31,7 @@ module "networking_setup" {
   # Definitions
   environment         = var.environment
   vpc_region          = "us-east-1"
-  vpc_cidr_block      = var.environment == "prod" ? var.prod_cidr : var.dev_cidr
+  vpc_cidr_block      = var.vpc_cidr
   public_subnet_cidr  = "10.10.1.0/24"
   private_subnet_cidr = "10.10.2.0/24"
   az_public_subnet    = local.public_subnet_az
@@ -41,7 +44,7 @@ module "security_setup" {
 
   # Definitions
   vpc_id         = module.networking_setup.vpc_id
-  external_cidrs = [var.home_ip]
+  external_cidrs = var.allowed_external_cidrs
   # stick with defaults defined in security module
 }
 

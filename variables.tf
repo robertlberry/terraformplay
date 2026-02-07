@@ -8,28 +8,18 @@ variable "environment" {
   }
 }
 
-variable "prod_cidr" {
-  description = "The CIDR used for AWS production VPC."
-  type        = string
-}
-
-variable "staging_cidr" {
-  description = "The CIDR used for AWS staging VPC."
-  type        = string
-}
-
-variable "dev_cidr" {
+variable "vpc_cidr" {
   description = "The CIDR used for AWS development VPC."
-  type        = string
-}
-
-variable "home_ip" {
-  description = "My home ip address."
   type        = string
 }
 
 variable "allowed_external_cidrs" {
   description = "External CIDRs allowed to ssh into the VPC."
   type        = list(string)
+}
+
+variable "active_region" {
+  description = "Default region to use for AWS account."
+  type        = string
 }
 
