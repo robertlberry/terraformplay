@@ -8,17 +8,7 @@ variable "environment" {
   }
 }
 
-#variable "prod_cidr" {
-#  description = "The CIDR used for AWS production VPC."
-#  type        = string
-#}
-
-#variable "staging_cidr" {
-#  description = "The CIDR used for AWS staging VPC."
-#  type        = string
-#}
-
-variable "dev_cidr" {
+variable "vpc_cidr" {
   description = "The CIDR used for AWS development VPC."
   type        = string
 }
@@ -28,4 +18,8 @@ variable "allowed_external_cidrs" {
   type        = list(string)
 }
 
+variable "active_region" {
+  description = "Default region to use for AWS account."
+  type        = string
+}
 
