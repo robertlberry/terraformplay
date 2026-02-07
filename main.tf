@@ -10,10 +10,7 @@ terraform {
   }
 
   required_version = ">= 1.1.2"
-}
 
-# Set provders
-terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -22,8 +19,9 @@ terraform {
   }
 }
 
+# Set provders
 provider "aws" {
-  region  = var.active_region
+  region = var.active_region
 }
 
 # AWS VPC initiation
